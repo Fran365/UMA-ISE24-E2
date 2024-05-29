@@ -8,12 +8,17 @@ public class Player {
     private Texture texture;
     private float x, y;
     private Rectangle bounds;
-
+    private playerBoat;
     public Player(String texturePath, float x, float y) {
         this.texture = new Texture(texturePath);
         this.x = x;
         this.y = y;
         this.bounds = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
+        this.playerBoat = new Boat("Balanced", 75, 75, 75, 75, new Texture(Gdx.files.internal("balanced.png")));
+    }
+
+    public void setPlayerBoat(Boat b) {
+        playerBoat = b;
     }
 
     public void render(SpriteBatch batch) {
