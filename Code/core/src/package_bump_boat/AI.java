@@ -1,0 +1,71 @@
+package com.badlogic.game;
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+
+public class AI {
+    private final Boat boat;
+    private static final float DETECTION_DISTANCE = 150f;
+    private float leftLimit;
+    private float rightLimit;
+
+    public AI(Boat boat) {
+        this.boat = boat;
+        this.leftLimit = 0;
+        this.rightLimit = 0;
+    }
+
+    public void setLimits(float initialPosX) {
+        leftLimit = initialPosX - (initialPosX == 160 ? 70 : 130);
+        rightLimit = initialPosX + (initialPosX == 1440 ? 70 : 130);
+    }
+
+    public void update(float deltaTime, Obstacle[] obstacles) {
+        detectObstaclesAndAvoid(obstacles);
+    }
+
+
+    public void moveLeft() {
+        if (bounds.x > 0) {
+            bounds.translate(-10, 0); // Move left by 10 units
+        }
+    }
+
+    public void moveRight() {
+        if (bounds.x + bounds.width < getParent().getWidth()) {
+            bounds.translate(10, 0); // Move right by 10 units
+        }
+    }
+
+    private void detectObstaclesAndAvoid(Obstacle[] obstacles) {
+        boolean leftClear = true;
+        boolean rightClear = true;
+
+        for (Obstacle obstacle : obstacles) {
+            Vector2 obstaclePos = new Vector2(obstacle.getPos().getX(), obstacle.getPos().getY());
+
+            Vector2 rightPos = new Vector2(boat.getPos().getX() + DETECTION_DISTANCE, boat.getPos().getY() + DETECTION_DISTANCE);
+            if (obstaclePos.dst(rightPos) < DETECTION_DISTANCE) {
+                rightClear = false;
+            }
+
+            Vector2 leftPos = new Vector2(boat.getPos().getX() - DETECTION_DISTANCE, boat.getPos().getY() + DETECTION_DISTANCE);
+            if (obstaclePos.dst(leftPos) < DETECTION_DISTANCE) {
+                leftClear = false;
+            }
+        }
+
+        if (!forwardClear) {
+            if (leftClear) {
+                moveLeft();
+            } else if (rightClear) {
+                moveRight();
+            }
+        }
+    }
+
+    public Boat getBoat() {
+        return boat;
+    }
+
+}

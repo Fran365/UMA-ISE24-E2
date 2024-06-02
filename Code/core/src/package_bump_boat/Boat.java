@@ -126,6 +126,11 @@ public class Boat extends Component implements KeyListener {
             }
         }
     }
+    public void collideWithPowerUp(PowerUp powerup) {
+        if (this.bounds.intersects(powerup.getBounds())) {
+            applyPowerUp(powerup);
+        }
+    }
 
     public void keyTyped(KeyEvent e) {}
 
