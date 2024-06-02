@@ -17,11 +17,13 @@ public class MainGameScreen extends ScreenAdapter {
     public void show() {
         batch = new SpriteBatch();
         obstacles = new Array<>();
-        obstacles.add(new Obstacle("roca.png", 100, 150));
-        obstacles.add(new Obstacle("roca.png", 300, 150));
+        obstacles.add(new Obstacle("rock.png", 100, 150));
+        obstacles.add(new Obstacle("rock.png", 300, 150));
+        obstacles.add(new Obstacle("log.png", 300, 150));
+        obstacles.add(new Obstacle("duck.png", 300, 150));
         // Add more obstacles as needed
-
-        player = new Player("player.png", 50, 50);
+        // At least one of each type
+        player = new Player("boat.png", 50, 50);
     }
 
     @Override

@@ -32,8 +32,6 @@ public class Code extends Game {
 
 	public int moverIzquierda = Keys.A;
 	public int moverDerecha = Keys.D;
-	public int moverArriba = Keys.W;
-	public int frenar = Keys.S;
 
 	public int usarPowerUp = Keys.SPACE; // Provisional
 

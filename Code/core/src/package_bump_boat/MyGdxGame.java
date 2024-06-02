@@ -44,4 +44,9 @@ public class MyGdxGame extends ApplicationAdapter {
 		img3.dispose();
 		img4.dispose();
 	}
+
+	public void returnToMenu() {
+		JOptionPane.showMessageDialog(this, "The boat has been destroyed.");
+		setScreen(new MainMenuScreen(this))
+	}
 }
