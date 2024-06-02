@@ -19,10 +19,10 @@ public class BoatSelectionMenu implements Screen {
         batch = new SpriteBatch();
         font = new BitmapFont();
         boats = new ArrayList<>();
-        boats.add(new Boat("Speedster", 90, 70, 50, 85, new Texture(Gdx.files.internal("speedster.png"))));
-        boats.add(new Boat("Tank", 60, 50, 90, 40, new Texture(Gdx.files.internal("tank.png"))));
-        boats.add(new Boat("Balanced", 75, 75, 75, 75, new Texture(Gdx.files.internal("balanced.png"))));
-        boats.add(new Boat("Agile", 80, 60, 60, 90, new Texture(Gdx.files.internal("agile.png"))));
+        boats.add(new Boat("Speedster", 90, 70, 50, 85, new Texture(Gdx.files.internal("speedsterBoat.png"))));
+        boats.add(new Boat("Tank", 60, 50, 90, 40, new Texture(Gdx.files.internal("tankBoat.png"))));
+        boats.add(new Boat("Balanced", 75, 75, 75, 75, new Texture(Gdx.files.internal("balancedBoat.png"))));
+        boats.add(new Boat("Agile", 80, 60, 60, 90, new Texture(Gdx.files.internal("agileBoat.png"))));
 
         selectedBoatIndex = 0;
 

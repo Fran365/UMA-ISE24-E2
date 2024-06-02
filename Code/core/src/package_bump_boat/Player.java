@@ -14,7 +14,7 @@ public class Player {
         this.x = x;
         this.y = y;
         this.bounds = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
-        this.playerBoat = new Boat("Balanced", 75, 75, 75, 75, new Texture(Gdx.files.internal("balanced.png")));
+        this.playerBoat = new Boat("Balanced", 75, 75, 75, 75, new Texture(Gdx.files.internal("balancedBoat.png")));
     }
 
     public void setPlayerBoat(Boat b) {

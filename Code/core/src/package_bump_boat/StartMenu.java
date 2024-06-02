@@ -8,11 +8,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class MainMenuScreen implements Screen {
+public class StartMenu implements Screen {
     private Game game;
     private OrthographicCamera camera;
     private SpriteBatch batch;
@@ -22,14 +23,19 @@ public class MainMenuScreen implements Screen {
     private String[] options;
     private int selectedOption;
 
-    public MainMenuScreen(Game game) {
+    public StartMenu(Game game) {
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
         batch = new SpriteBatch();
-        titleFont = new BitmapFont(Gdx.files.internal("fonts/titleFont.fnt"));
-        optionFont = new BitmapFont(Gdx.files.internal("fonts/optionFont.fnt"));
-        backgroundImage = new Texture(Gdx.files.internal("images/background.png"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("assets/riffic.ttf"));
+        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+        parameter.size = 36;
+        titleFont = generator.generateFont(parameter);
+        parameter.size = 24;
+        optionFont = generator.generateFont(parameter);
+        generator.dispose();
+        backgroundImage = new Texture(Gdx.files.internal("assets/startMenu.png"));
         options = new String[]{"Start Game", "Ship Selection", "Shop"};
         selectedOption = 0;
 
