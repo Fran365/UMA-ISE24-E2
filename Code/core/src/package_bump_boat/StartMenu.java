@@ -28,13 +28,17 @@ public class StartMenu implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
         batch = new SpriteBatch();
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("assets/riffic.ttf"));
+
+        FreeTypeFontGenerator generatorTitle = new FreeTypeFontGenerator(Gdx.files.internal("assets/Riffic.ttf"));
+        FreeTypeFontGenerator generatorOptions = new FreeTypeFontGenerator(Gdx.files.internal"assets/Nugo.ttf");
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 36;
-        titleFont = generator.generateFont(parameter);
+        titleFont = generatorTitle.generateFont(parameter);
         parameter.size = 24;
-        optionFont = generator.generateFont(parameter);
-        generator.dispose();
+        optionFont = generatorOptions.generateFont(parameter);
+        generatorTitle.dispose();
+        generatorOptions.dispose();
+
         backgroundImage = new Texture(Gdx.files.internal("assets/startMenu.png"));
         options = new String[]{"Start Game", "Ship Selection", "Shop"};
         selectedOption = 0;

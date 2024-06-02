@@ -1,6 +1,17 @@
 package package_bump_boat;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.ScreenUtils;
 
 public class BoatSelectionMenu implements Screen {
     private Game game;
@@ -9,7 +20,8 @@ public class BoatSelectionMenu implements Screen {
     private BitmapFont font;
     private List<Boat> boats;
     private int selectedBoatIndex;
-    Player player;
+    private Texture backgroundImage;
+    private Player player;
 
     public BoatSelectionMenu(Game game, Player player) {
         this.player = player;
@@ -17,12 +29,20 @@ public class BoatSelectionMenu implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
         batch = new SpriteBatch();
-        font = new BitmapFont();
+
+        backgroundImage = new Texture(Gdx.files.internal("assets/startMenu.png"));
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("assets/Nugo.ttf"));
+        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+        parameter.size() = 24;
+        font = generator.generateFont(parameter);
+        generator.dispose();
+
         boats = new ArrayList<>();
-        boats.add(new Boat("Speedster", 90, 70, 50, 85, new Texture(Gdx.files.internal("speedsterBoat.png"))));
-        boats.add(new Boat("Tank", 60, 50, 90, 40, new Texture(Gdx.files.internal("tankBoat.png"))));
-        boats.add(new Boat("Balanced", 75, 75, 75, 75, new Texture(Gdx.files.internal("balancedBoat.png"))));
-        boats.add(new Boat("Agile", 80, 60, 60, 90, new Texture(Gdx.files.internal("agileBoat.png"))));
+        boats.add(new Boat("Speedster", 90, 70, 50, 85, new Texture(Gdx.files.internal("assets/speedsterBoat.png"))));
+        boats.add(new Boat("Tank", 60, 50, 90, 40, new Texture(Gdx.files.internal("assets/tankBoat.png"))));
+        boats.add(new Boat("Balanced", 75, 75, 75, 75, new Texture(Gdx.files.internal("assets/balancedBoat.png"))));
+        boats.add(new Boat("Agile", 80, 60, 60, 90, new Texture(Gdx.files.internal("assets/agileBoat.png"))));
 
         selectedBoatIndex = 0;
 

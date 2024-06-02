@@ -1,6 +1,17 @@
 package package_bump_boat;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.ScreenUtils;
 
 public class ShopMenu implements Screen {
     private Game game;
@@ -9,13 +20,21 @@ public class ShopMenu implements Screen {
     private BitmapFont font;
     private Shop shop;
     private Coin coin;
+    private Texture backgroundImage;
 
     public ShopMenu(Game game) {
         this.game = game;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
         batch = new SpriteBatch();
-        font = new BitmapFont();
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("assets/Nugo.ttf"));
+        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+        parameter.size() = 24;
+        font = generator.generateFont(parameter);
+        generator.dispose();
+
+        backgroundImage = new Texture(Gdx.files.internal("assets/startMenu.png"));
         shop = new Shop();
         coin = new Coin(200);
 
