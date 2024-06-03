@@ -1,18 +1,16 @@
-public class Turbine extends PowerUp {
+public class Shield extends PowerUp {
 
-    public Turbine(String name) {
-        super("Turbine");
+    public Shield(String name) {
+        super("Shield");
     }
 
     @Override
     public void applyEffect(Boat boat) {
-        boat.setSpeed(boat.getSpeed() + boat.getSpeed() * 0.2);
-        boat.setAcceleration(boat.getAcceleration() + boat.getAcceleration() * 0.2);
+        boat.setRobustness(boat.getRobustness() + boat.setRobustness() * 0.2);
     }
 
     @Override
     public void revertEffect(Boat boat) {
-        boat.setSpeed(boat.getSpeed() - boat.getSpeed() * 0.2);
-        boat.setAcceleration(boat.getAcceleration() - boat.getAcceleration() * 0.2);
+        boat.setRobustness(boat.getRobustness() - boat.getRobustness() * 0.2);
     }
 }
